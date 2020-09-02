@@ -21,15 +21,14 @@ const httpServer = http.createServer((req, res) => {
     const headers = req.headers;
 
     const decoder = new StringDecoder('utf-8');
-    var buffer = '';
+    let buffer = '';
     req.on('data', (data) => {
         buffer += decoder.write(data);
     });
 
     req.on('end', () => {
         buffer += decoder.end();
-
-        const parsedPayload = JSON.parse(buffer);
+        const parsedPayload = buffer.length ? JSON.parse(buffer) : {};
 
         const data = {
             trimedPath: trimedPath,
@@ -65,9 +64,9 @@ httpServer.listen(8080, () => {
 });
 
 const router = {
-    ping : routeHandler.ping,
-    books : routeHandler.Books,
-    notfound : routeHandler.notfound
+    ping: routeHandler.ping,
+    books: routeHandler.Books,
+    notfound: routeHandler.notfound
 }
 
 
