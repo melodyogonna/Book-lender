@@ -73,4 +73,5 @@ const router = {
   notfound: routeHandler.notfound,
   borrow: routeHandler._request.borrow,
   return: routeHandler._request.return,
+  register: routeHandler.Register,
 };
